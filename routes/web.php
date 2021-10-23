@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 
 Route::prefix('contents')->group(function() {
-    Route::get('/list', [ContentController::class, 'list'])->name('contents/list');
+    Route::get('/list', [ContentController::class, 'list'])->name('contents.list');
+    Route::get('/create', [ContentController::class, 'create'])->name('contents.create');
+    Route::get('/update/{content_id}', [ContentController::class, 'update'])->name('contents.update');
+    Route::get('/delete/{content_id}', [ContentController::class, 'delete'])->name('contents.delete');
+    Route::post('/save', [ContentController::class, 'save'])->name('contents.save');
 });
 

@@ -2,38 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ContentService;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
+
+    public function __construct(
+        ContentService $contentService
+    )
+    {
+        $this->contentService = $contentService;
+    }
+
     /**
      * 投稿一覧ページの表示
      *
-     * @return void
+     * @return view
      */
     public function list()
     {
-        return view('contents.list');
+        $content_infos = $this->contentService->getAllContentList();
+        return view('contents.list', ['content_infos' => $content_infos]);
     }
 
+    /**
+     * 新規投稿作成
+     *
+     * @return view
+     */
     public function create()
     {
-        # code...
-    }
-    
-    public function update()
-    {
-        # code...
+        return view('contents.create');
     }
 
-    public function save()
+    /**
+     * 投稿編集
+     *
+     * @param integer $content_id
+     * @return view
+     */
+    public function update(int $content_id)
     {
-        # code...
+        $content_info = $this->contentService->getContentInfoByContentId($content_id);
+        return view('contents.update', ['content_info' => $content_info]);
     }
 
+    /**
+     * 投稿削除
+     *
+     * @return view
+     */
     public function delete()
     {
-        # code...
+        return redirect(route('contents.list'));
+    }
+
+    /**
+     * 新規作成・投稿編集の情報保存
+     *
+     * @param array $post_info
+     * @return view
+     */
+    public function save(array $post_info)
+    {
+        $this->contentService->
+        return redirect(route('contents.list'));
     }
 }
