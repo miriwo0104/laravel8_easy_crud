@@ -1,8 +1,10 @@
 <?php
 
 return [
-    'deleted_flag' => [
-        'not_deleted' => 0,
-        'deleted' => 1,
+    'content' => [
+        'deleted_flag' => [
+            'true' => 1,
+            'false' => 0,
+        ],
     ],
 ];

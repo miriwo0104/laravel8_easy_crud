@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\ContentService;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContentRequest;
 
 class ContentController extends Controller
 {
@@ -52,22 +53,24 @@ class ContentController extends Controller
     /**
      * 投稿削除
      *
+     * @param integer $content_id
      * @return view
      */
-    public function delete()
+    public function delete(int $content_id)
     {
+        $this->contentService->delete($content_id);
         return redirect(route('contents.list'));
     }
 
     /**
      * 新規作成・投稿編集の情報保存
      *
-     * @param array $post_info
+     * @param ContentRequest $post_data
      * @return view
      */
-    public function save(array $post_info)
+    public function save(ContentRequest $post_data)
     {
-        $this->contentService->
+        $this->contentService->save($post_data);
         return redirect(route('contents.list'));
     }
 }

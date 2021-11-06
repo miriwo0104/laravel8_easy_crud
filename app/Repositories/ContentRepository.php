@@ -21,7 +21,7 @@ class ContentRepository implements ContentRepositoryInterface
     {
         return $this->content
             ->select('*')
-            ->where('deleted_flag', config('const.deleted_flag.not_deleted'))
+            ->where('deleted_flag', config('const.content.deleted_flag.false'))
             ->get();
     }
 
@@ -33,18 +33,33 @@ class ContentRepository implements ContentRepositoryInterface
      */
     public function getContentInfoByContentId(int $content_id)
     {
-        return $this->content
-            ->find($content_id);
+        return $this->content->find($content_id);
     }
 
     /**
      * 投稿内容の保存
      *
-     * @param array $post_info
+     * @param Request $post_data
      * @return Model
      */
-    public function save(array $post_info)
+    public function save($post_data)
     {
-        $content_info = $this->content;
+        return $this->content->updateOrCreate(
+            ['id' => $post_data->id],
+            ['content' => $post_data->content],
+        );
+    }
+
+    /**
+     * 投稿削除
+     *
+     * @param integer $content_id
+     * @return Model
+     */
+    public function delete(int $content_id)
+    {
+        $content_info = $this->content->find($content_id);
+        $content_info->deleted_flag = config('const.content.deleted_flag.true');
+        return $content_info->save();
     }
 }

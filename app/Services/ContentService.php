@@ -38,11 +38,22 @@ class ContentService
     /**
      * 投稿内容の保存
      *
-     * @param array $post_info
+     * @param Request $post_data
      * @return Model
      */
-    public function save(array $post_info)
+    public function save($post_data)
     {
-        return $this->contentRepository->save($post_info);
+        return $this->contentRepository->save($post_data);
+    }
+
+    /**
+     * 投稿削除
+     *
+     * @param integer $content_id
+     * @return Model
+     */
+    public function delete(int $content_id)
+    {
+        return $this->contentRepository->delete($content_id);
     }
 }
