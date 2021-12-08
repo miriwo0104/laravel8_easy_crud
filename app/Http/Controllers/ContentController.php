@@ -25,6 +25,7 @@ class ContentController extends Controller
     public function list()
     {
         $content_infos = $this->contentService->getAllContentList();
+        dd($content_infos);
         return view('contents.list', ['content_infos' => $content_infos]);
     }
 
