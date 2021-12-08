@@ -17,6 +17,7 @@
                 <br>
             @enderror
             <textarea name="content"  cols="30" rows="10"></textarea>
+            <input type="hidden" value="これはotherStrです" name="otherStr">
             <input type="submit" value="投稿">
         </form>
     </main>
