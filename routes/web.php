@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\SlackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,10 @@ Route::prefix('contents')->group(function() {
     Route::get('/update/{content_id}', [ContentController::class, 'update'])->name('contents.update');
     Route::get('/delete/{content_id}', [ContentController::class, 'delete'])->name('contents.delete');
     Route::post('/save', [ContentController::class, 'save'])->name('contents.save');
+});
+
+Route::prefix('slack')->group(function() {
+    Route::get('/index', [SlackController::class, 'index'])->name('slack.index');
+    Route::post('/send', [SlackController::class, 'send'])->name('slack.send');
 });
 
