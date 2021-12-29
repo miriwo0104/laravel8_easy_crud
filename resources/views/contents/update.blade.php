@@ -10,7 +10,7 @@
     <header></header>
     <main>
         <h1>編集</h1>
-        <form action="{{ route('contents.save') }}" method="post">
+        <form action="{{ route('contents.update') }}" method="post">
             @csrf
             @error('content')
                 {{ $message }}

@@ -38,12 +38,23 @@ class ContentService
     /**
      * 投稿内容の保存
      *
-     * @param Request $post_data
+     * @param Request $requestBody
      * @return Model
      */
-    public function save($post_data)
+    public function create($requestBody)
     {
-        return $this->contentRepository->save($post_data);
+        return $this->contentRepository->create($requestBody);
+    }
+
+    /**
+     * 投稿内容の保存
+     *
+     * @param array $requestBody
+     * @return Model
+     */
+    public function update($requestBody)
+    {
+        return $this->contentRepository->update($requestBody);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Services\ContentService;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContentRequest;
+use App\Http\Requests\UpdateContentRequest;
 
 class ContentController extends Controller
 {
@@ -33,7 +34,7 @@ class ContentController extends Controller
      *
      * @return view
      */
-    public function create()
+    public function createForm()
     {
         return view('contents.create');
     }
@@ -44,7 +45,7 @@ class ContentController extends Controller
      * @param integer $content_id
      * @return view
      */
-    public function update(int $content_id)
+    public function updateForm(int $content_id)
     {
         $content_info = $this->contentService->getContentInfoByContentId($content_id);
         return view('contents.update', ['content_info' => $content_info]);
@@ -68,9 +69,23 @@ class ContentController extends Controller
      * @param ContentRequest $post_data
      * @return view
      */
-    public function save(ContentRequest $post_data)
+    public function create(ContentRequest $request)
     {
-        $this->contentService->save($post_data);
+        $requestBody = $request->validated();
+        $this->contentService->create($requestBody);
+        return redirect(route('contents.list'));
+    }
+
+    /**
+     * 新規作成・投稿編集の情報保存
+     *
+     * @param UpdateContentRequest $post_data
+     * @return view
+     */
+    public function update(UpdateContentRequest $request)
+    {
+        $requestBody = $request->validated();
+        $this->contentService->update($requestBody);
         return redirect(route('contents.list'));
     }
 }

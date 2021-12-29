@@ -27,7 +27,15 @@ interface ContentRepositoryInterface
      * @param Request $post_data
      * @return Model
      */
-    public function save($post_data);
+    public function create($post_data);
+
+    /**
+     * 投稿内容の保存
+     * 
+     * @param Request $post_data
+     * @return Model
+     */
+    public function update($post_data);
 
     /**
      * 投稿削除

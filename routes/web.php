@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 Route::prefix('contents')->group(function() {
     Route::get('/list', [ContentController::class, 'list'])->name('contents.list');
-    Route::get('/create', [ContentController::class, 'create'])->name('contents.create');
-    Route::get('/update/{content_id}', [ContentController::class, 'update'])->name('contents.update');
+    Route::get('/create/form', [ContentController::class, 'createForm'])->name('contents.create.form');
+    Route::get('/update/form/{content_id}', [ContentController::class, 'updateForm'])->name('contents.update.form');
     Route::get('/delete/{content_id}', [ContentController::class, 'delete'])->name('contents.delete');
-    Route::post('/save', [ContentController::class, 'save'])->name('contents.save');
+    Route::post('/create', [ContentController::class, 'create'])->name('contents.create');
+    Route::post('/update', [ContentController::class, 'update'])->name('contents.update');
 });
 

@@ -12,6 +12,11 @@ class ContentRepository implements ContentRepositoryInterface
         $this->content = $content;   
     }
 
+    public function getById(int $id)
+    {
+        return $this->content->find($id);
+    }
+
     /**
      * 投稿内容の取得
      *
@@ -39,15 +44,24 @@ class ContentRepository implements ContentRepositoryInterface
     /**
      * 投稿内容の保存
      *
-     * @param Request $post_data
+     * @param Request $requestBody
      * @return Model
      */
-    public function save($post_data)
+    public function create($requestBody)
     {
-        return $this->content->updateOrCreate(
-            ['id' => $post_data->id],
-            ['content' => $post_data->content],
-        );
+        return $this->content->create($requestBody);
+    }
+
+    /**
+     * 投稿内容の保存
+     *
+     * @param array $requestBody
+     * @return Model
+     */
+    public function update($requestBody)
+    {
+        $content = $this->getById($requestBody['id']);
+        return $content->update($requestBody);
     }
 
     /**

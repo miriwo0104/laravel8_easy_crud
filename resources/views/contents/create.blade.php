@@ -10,7 +10,7 @@
     <header></header>
     <main>
         <h1>新規投稿</h1>
-        <form action="{{ route('contents.save') }}" method="post">
+        <form action="{{ route('contents.create') }}" method="post">
             @csrf
             @error('content')
                 {{ $message }}
