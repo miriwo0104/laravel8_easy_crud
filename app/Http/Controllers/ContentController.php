@@ -45,9 +45,9 @@ class ContentController extends Controller
      * @param integer $content_id
      * @return view
      */
-    public function updateForm(int $content_id)
+    public function updateForm(int $id)
     {
-        $content_info = $this->contentService->getContentInfoByContentId($content_id);
+        $content_info = $this->contentService->getById($id);
         return view('contents.update', ['content_info' => $content_info]);
     }
 

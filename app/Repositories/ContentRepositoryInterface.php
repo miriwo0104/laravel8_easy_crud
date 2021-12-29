@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 interface ContentRepositoryInterface
 {
     /**
-     * 投稿内容の取得
+     * idを用いて情報を取得
+     *
+     * @param integer $id
+     * @return Content
+     */
+    public function getById(int $id);
+
+    /**
+     * 投稿内容すべての取得
      *
      * @return Model
      */
     public function getAllContentList();
-
-    /**
-     * 投稿内容IDに紐づく投稿内容の取得
-     * 
-     * @param integer $content_id
-     * @return Model
-     */
-    public function getContentInfoByContentId(int $content_id);
 
     /**
      * 投稿内容の保存
@@ -30,7 +30,7 @@ interface ContentRepositoryInterface
     public function create($post_data);
 
     /**
-     * 投稿内容の保存
+     * 投稿内容の更新
      * 
      * @param Request $post_data
      * @return Model

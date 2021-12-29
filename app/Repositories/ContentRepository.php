@@ -12,15 +12,21 @@ class ContentRepository implements ContentRepositoryInterface
         $this->content = $content;   
     }
 
-    public function getById(int $id)
+    /**
+     * idを用いて情報を取得
+     *
+     * @param integer $id
+     * @return Content
+     */
+    public function getById(int $id) : Content
     {
         return $this->content->find($id);
     }
 
     /**
-     * 投稿内容の取得
+     * 投稿内容をすべて返す
      *
-     * @return Model
+     * @return Content
      */
     public function getAllContentList()
     {
@@ -28,17 +34,6 @@ class ContentRepository implements ContentRepositoryInterface
             ->select('*')
             ->where('deleted_flag', config('const.content.deleted_flag.false'))
             ->get();
-    }
-
-    /**
-     * 投稿内容IDに紐づく投稿内容の取得
-     *
-     * @param integer $content_id
-     * @return Model
-     */
-    public function getContentInfoByContentId(int $content_id)
-    {
-        return $this->content->find($content_id);
     }
 
     /**
@@ -53,7 +48,7 @@ class ContentRepository implements ContentRepositoryInterface
     }
 
     /**
-     * 投稿内容の保存
+     * 投稿内容の更新
      *
      * @param array $requestBody
      * @return Model

@@ -30,9 +30,9 @@ class ContentService
      * @param integer $content_id
      * @return Model
      */
-    public function getContentInfoByContentId(int $content_id)
+    public function getById(int $id)
     {
-        return $this->contentRepository->getContentInfoByContentId($content_id);
+        return $this->contentRepository->getById($id);
     }
     
     /**
