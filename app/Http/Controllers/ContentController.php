@@ -9,7 +9,6 @@ use App\Http\Requests\ContentRequest;
 
 class ContentController extends Controller
 {
-
     public function __construct(
         ContentService $contentService
     )
@@ -71,6 +70,19 @@ class ContentController extends Controller
     public function save(ContentRequest $post_data)
     {
         $this->contentService->save($post_data);
+        return redirect(route('contents.list'));
+    }
+
+    /**
+     * 編集
+     *
+     * @param ContentRequest $request
+     * @return view
+     */
+    public function updateTest(ContentRequest $request)
+    {
+        $requestBody = $request->validated();
+        $this->contentService->updateTest($requestBody);
         return redirect(route('contents.list'));
     }
 }

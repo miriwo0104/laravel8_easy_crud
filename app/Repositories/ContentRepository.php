@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Content;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 class ContentRepository implements ContentRepositoryInterface
 {
@@ -48,6 +49,17 @@ class ContentRepository implements ContentRepositoryInterface
             ['id' => $post_data->id],
             ['content' => $post_data->content],
         );
+    }
+
+    /**
+     * 投稿内容の保存
+     *
+     * @param array $requestBody
+     * @return Model
+     */
+    public function updateTest(array $requestBody)
+    {
+        return $this->content->update($requestBody);
     }
 
     /**

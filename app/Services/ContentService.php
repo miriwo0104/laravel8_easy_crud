@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\ContentRepositoryInterface as ContentRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 class ContentService
 {
@@ -44,6 +45,17 @@ class ContentService
     public function save($post_data)
     {
         return $this->contentRepository->save($post_data);
+    }
+
+    /**
+     * 投稿内容の保存
+     *
+     * @param array $requestBody
+     * @return Model
+     */
+    public function updateTest(array $requestBody)
+    {
+        return $this->contentRepository->updateTest($requestBody);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ContentUpdateTestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,5 @@ Route::prefix('contents')->group(function() {
     Route::get('/update/{content_id}', [ContentController::class, 'update'])->name('contents.update');
     Route::get('/delete/{content_id}', [ContentController::class, 'delete'])->name('contents.delete');
     Route::post('/save', [ContentController::class, 'save'])->name('contents.save');
+    Route::post('/update_test', [ContentController::class, 'updateTest'])->name('contents.update.test');
 });
-

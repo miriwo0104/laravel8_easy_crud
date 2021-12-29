@@ -24,7 +24,8 @@ class ContentRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required'],
+            'id' => 'required|integer',
+            'content' => 'required|string',
         ];
     }
 }
